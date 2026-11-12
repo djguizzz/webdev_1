@@ -1,19 +1,107 @@
-<!-- HEADER -->
-<header>
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo">Gina's Photo & Video</a>
-    <button class="mobile-menu-btn" id="menu-toggle">☰</button>
-    <ul class="nav-links" id="nav-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Gina's Photo & Video Services</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">Gina’s<span>Photo & Video Services</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html" class="nav-cta">Book a Session</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <p>&copy; 2026 Gina's Photo & Video Services - Iloilo City. All rights reserved.</p>
-</footer>
+  <section class="page-banner">
+    <div class="container">
+      <span>Our Heritage</span>
+      <h1>A Family Legacy, One Frame at a Time</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80" alt="Photography Studio Heritage" />
+      </div>
+      <div>
+        <span style="color: var(--gold-hover); font-weight: 600; text-transform: uppercase; font-size: 0.82rem; letter-spacing: 2px;">Established January 30, 1989</span>
+        <h2 style="font-size: 2.2rem; margin: 10px 0 18px;">Rooted in La Paz, Iloilo City</h2>
+        <p style="margin-bottom: 16px; color: var(--gray-text);">
+          <strong>Gina’s Photo & Video Services</strong> began over 37 years ago on January 30, 1989, in Brgy. Rizal, La Paz, Iloilo City[cite: 3, 4]. What started as a dedicated door-to-door family photography venture grew through perseverance, passion, and genuine care for the local community[cite: 3, 8].
+        </p>
+        <p style="margin-bottom: 16px; color: var(--gray-text);">
+          Led by founders <strong>Gina P. Lachica</strong> and <strong>Erwin A. Portades</strong>, the studio has evolved with modern photography and videography equipment while preserving the warmth and personal touch that families, students, and schools in Iloilo City trust[cite: 3, 8].
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span>Our Journey</span>
+        <h2>Milestones Through the Decades</h2>
+      </div>
+      <div class="timeline-grid">
+        <div class="timeline-card">
+          <span class="year">1989</span>
+          <p>Founded on January 30, 1989 in La Paz, Iloilo City, offering door-to-door portrait photography for local families[cite: 3, 8].</p>
+        </div>
+        <div class="timeline-card">
+          <span class="year">Carrying the Torch</span>
+          <p>Tita Gina continued the craft independently as a dedicated freelancer, keeping the family’s passion alive[cite: 8].</p>
+        </div>
+        <div class="timeline-card">
+          <span class="year">2016 – 2017</span>
+          <p>Family members returned to join the business, upgrading to modern studio lighting, cameras, and video tools[cite: 8].</p>
+        </div>
+        <div class="timeline-card">
+          <span class="year">Today</span>
+          <p>Located in Brgy. Rizal, La Paz, serving Iloilo City clients across weddings, schools, events, and studio portraits[cite: 3, 4, 8].</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Gina’s Photo & Video Services</h4>
+        <p>Capturing Iloilo City’s cherished milestones since January 30, 1989[cite: 3, 4].</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Our Story</a></li>
+          <li><a href="services.html">Services & Packages</a></li>
+          <li><a href="gallery.html">Portfolio Gallery</a></li>
+          <li><a href="contact.html">Request a Quotation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Our Studio</h4>
+        <p>Brgy. Rizal, La Paz, Iloilo City[cite: 4]</p>
+        <p>Hours: 9:00 AM – 5:00 PM[cite: 4]</p>
+        <p>Phone: 0930-323-9145 / 0948-327-7158[cite: 4]</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gina’s Photo & Video Services. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
