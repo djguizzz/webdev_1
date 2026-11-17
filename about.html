@@ -4,14 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gina's Photo & Video Services</title>
-  <!-- Google Fonts: Cinzel & Lora -->
+  <!-- Google Fonts: Cinzel & Lora + Great Vibes (only for the script "About Us" on this page)-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <!-- Shared Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="about-page">
 
   <!-- ================= HEADER / NAVBAR ================= -->
   <header class="site-header">
@@ -41,7 +42,209 @@
 
   <!-- ================= MAIN CONTENT ================= -->
   <main>
-    <!-- PUT YOUR CODE HERE :> -->
+    <!-- ========== HERO ==========
+         Built like the design inspo. The layers stack like this (lowest to highest):
+           z-index 1  = the photo on the right
+           z-index 2  = a dark fade so the photo melts into the black on the left
+           z-index 3  = the gold swoosh curve at the bottom
+           z-index 4  = the text and the gold corner bracket (always on top so it stays readable) -->
+    <section class="about-hero" id="aboutHero">
+
+      <!-- Layer 1: the photo -->
+      <div class="about-hero-photo" id="heroPhoto">
+        <img src="images/about-hero.jpg"
+             alt="A professional camera ready to capture an event"
+             onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+        <span class="about-photo-label">Photo coming soon</span>
+      </div>
+
+      <!-- Layer 2: dark fade over the left side of the photo -->
+      <div class="about-hero-fade" aria-hidden="true"></div>
+
+      <!-- Layer 3: gold swoosh curve -->
+      <svg class="about-hero-swoosh" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 105 C300 125 700 85 1200 20" fill="none" stroke="#c9a24b" stroke-width="4"/>
+      </svg>
+
+      <!-- Layer 4: gold corner bracket + all the text -->
+      <span class="about-bracket" aria-hidden="true"></span>
+
+      <div class="about-container about-hero-inner">
+        <div class="about-hero-text">
+          <!-- Each .hero-item fades in one after the other when the page loads (see about.js) -->
+          <p class="about-script hero-item" style="--i:0">About Us</p>
+          <h1 class="hero-item" style="--i:1">More Than Photography.</h1>
+          <p class="about-hero-gold hero-item" style="--i:2">It's About Stories.</p>
+          <p class="about-hero-desc hero-item" style="--i:3">
+            At Gina's Photo &amp; Video Services, we turn moments into timeless memories.
+            With over <span id="yearsCount">37</span> years of experience, we are dedicated to capturing
+            life's most beautiful chapters, with passion, creativity, and care.
+          </p>
+          <a href="#our-story" class="about-btn hero-item" style="--i:4">Learn More <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== OUR STORY ========== -->
+    <section class="about-story" id="our-story">
+      <div class="about-container about-story-grid">
+
+        <div class="reveal">
+          <p class="about-eyebrow">Our Story</p>
+          <h2>A family business, built one memory at a time</h2>
+          <span class="about-line" aria-hidden="true"></span>
+        </div>
+
+        <div class="about-story-text reveal">
+          <p>
+            Gina's Photo &amp; Video Services began on <strong>January 30, 1989</strong> as a
+            family-owned photography business in Iloilo City. It was founded by
+            <strong>Gina P. Lachica</strong>, and today it is run together with
+            <strong>Erwin A. Portades</strong>.
+          </p>
+          <p>
+            Since then, we have been part of the celebrations, milestones, and everyday occasions of
+            Ilonggo families, from weddings and graduations to birthdays and family gatherings. Our goal is
+            simple: to make sure the moments that matter are kept safe and beautifully told.
+          </p>
+        </div>
+
+        <!-- Quick facts. -->
+        <ul class="about-facts reveal" aria-label="Quick facts about the business">
+          <li>
+            <span class="about-fact-number" id="factYears">37+</span>
+            <span class="about-fact-label">Years of experience</span>
+          </li>
+          <li>
+            <span class="about-fact-number">1989</span>
+            <span class="about-fact-label">Year we opened</span>
+          </li>
+          <li>
+            <span class="about-fact-number">Family</span>
+            <span class="about-fact-label">Owned &amp; operated</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== WHO WE SERVE ========== -->
+    <section class="about-serve" id="who-we-serve">
+
+      <!-- Back layer: giant outlined text. It slides sideways a little as you scroll -->
+      <span class="about-serve-watermark" id="serveWatermark" aria-hidden="true">Iloilo City</span>
+
+      <div class="about-container about-serve-inner">
+
+        <div class="about-serve-head reveal">
+          <p class="about-script about-script-sm">Who We Serve</p>
+          <h2>Everyone with a moment worth keeping</h2>
+          <span class="about-line about-line-center" aria-hidden="true"></span>
+        </div>
+
+    <!-- Tabs: click one to switch the list. Arrow keys work too. -->
+        <div class="about-tabs reveal" role="tablist" aria-label="Who we serve">
+          <button class="about-tab active" role="tab" id="tab-clients" aria-selected="true" aria-controls="panel-clients">Our clients</button>
+          <button class="about-tab" role="tab" id="tab-events" aria-selected="false" aria-controls="panel-events" tabindex="-1">Events we cover</button>
+        </div>
+
+     <!-- Panel 1: clients. -->
+     <div class="about-tabpanel active" id="panel-clients" role="tabpanel" aria-labelledby="tab-clients">
+        <h3 class="about-tabpanel-title">Our clients</h3>
+          <ul class="about-tiles">
+            <li style="--i:0"><span class="about-tile-num">01</span><span class="about-tile-name">Individuals</span></li>
+            <li style="--i:1"><span class="about-tile-num">02</span><span class="about-tile-name">Families</span></li>
+            <li style="--i:2"><span class="about-tile-num">03</span><span class="about-tile-name">Couples</span></li>
+            <li style="--i:3"><span class="about-tile-num">04</span><span class="about-tile-name">Students</span></li>
+            <li style="--i:4"><span class="about-tile-num">05</span><span class="about-tile-name">Schools &amp; educational institutions</span></li>
+            <li style="--i:5"><span class="about-tile-num">06</span><span class="about-tile-name">Businesses</span></li>
+            <li style="--i:6"><span class="about-tile-num">07</span><span class="about-tile-name">Event organizers</span></li>
+          </ul>
+        </div>
+
+    <!-- Panel 2: events. -->
+        <div class="about-tabpanel" id="panel-events" role="tabpanel" aria-labelledby="tab-events">
+          <h3 class="about-tabpanel-title">Events we cover</h3>
+          <ul class="about-tiles">
+            <li style="--i:0"><span class="about-tile-num">01</span><span class="about-tile-name">Weddings</span></li>
+            <li style="--i:1"><span class="about-tile-num">02</span><span class="about-tile-name">Birthdays</span></li>
+            <li style="--i:2"><span class="about-tile-num">03</span><span class="about-tile-name">Debuts</span></li>
+            <li style="--i:3"><span class="about-tile-num">04</span><span class="about-tile-name">Graduations</span></li>
+            <li style="--i:4"><span class="about-tile-num">05</span><span class="about-tile-name">School events</span></li>
+            <li style="--i:5"><span class="about-tile-num">06</span><span class="about-tile-name">Corporate events</span></li>
+            <li style="--i:6"><span class="about-tile-num">07</span><span class="about-tile-name">Family gatherings</span></li>
+          </ul>
+        </div>
+
+        <p class="about-serve-note reveal">
+          <span class="about-pin" aria-hidden="true"></span>
+          Our service area is <strong>within Iloilo City</strong>.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ========== BOOKING & VISIT DETAILS ========== -->
+    <section class="about-visit" id="visit-us">
+      <div class="about-container about-visit-grid">
+
+        <!-- Left: how booking works -->
+        <div class="about-visit-card reveal">
+          <h3>Booking details</h3>
+          <dl>
+            <dt>Appointments</dt>
+            <dd>We accept both appointments and walk-ins. Advance booking depends on our availability.</dd>
+
+            <dt>Reservation</dt>
+            <dd>A down payment or reservation fee is required.</dd>
+
+            <dt>Payment methods</dt>
+            <dd>Cash, GCash, and Bank Transfer.</dd>
+
+            <dt>Prices</dt>
+            <dd>Prices are not listed online. Inquire with us for a quotation.</dd>
+          </dl>
+        </div>
+
+        <!-- Right: where to find us and how to reach us -->
+        <div class="about-visit-card reveal">
+          <h3>Visit &amp; contact us</h3>
+          <dl>
+            <dt>Address</dt>
+            <dd>Brgy. Rizal, La Paz, Iloilo City</dd>
+
+            <dt>Open hours</dt>
+            <dd>9:00 AM &ndash; 5:00 PM</dd>
+
+            <dt>Call or text</dt>
+            <!-- tel: links let phones call with one tap -->
+            <dd>
+              <a href="tel:09303239145">0930 323 9145</a> /
+              <a href="tel:09483277158">0948 327 7158</a>
+            </dd>
+
+            <dt>Email</dt>
+            <dd><a href="mailto:gina.photovidservices@gmail.com">gina.photovidservices@gmail.com</a></dd>
+
+            <dt>Other ways to inquire</dt>
+            <dd>Facebook Messenger, our Facebook page, or just walk in.</dd>
+          </dl>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== CALL TO ACTION ========== -->
+    <section class="about-cta">
+      <div class="about-container reveal">
+        <h2>Let's tell your story together</h2>
+        <p>Tell us about your event and we'll get back to you with a quotation.</p>
+        <div class="about-cta-buttons">
+          <a href="contact.html" class="about-btn about-btn-solid">Send an Inquiry</a>
+          <a href="services.html" class="about-btn">View Services</a>
+        </div>
+      </div>
+    </section>
+      
   </main>
 
   <!-- ================= FOOTER ================= -->
