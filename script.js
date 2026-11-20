@@ -261,5 +261,3 @@ if (serviceCards.length) {
     });
   });
 }
-}));
-
