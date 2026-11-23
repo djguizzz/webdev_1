@@ -261,3 +261,136 @@ if (serviceCards.length) {
     });
   });
 }
+
+/* ---------- 5. FOOTER: years of experience (any page that has it) ---------- */
+// The business opened in 1989, so this number never goes out of date
+const footerYears = document.getElementById('footerYears');
+if (footerYears) footerYears.textContent = new Date().getFullYear() - 1989;
+
+/* ---------- 6. CONTACT PAGE: form validation ---------- */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+
+  // The form fields
+  const fields = {
+    name: document.getElementById('name'),
+    email: document.getElementById('email'),
+    phone: document.getElementById('phone'),
+    eventType: document.getElementById('eventType'),
+    eventDate: document.getElementById('eventDate'),
+    message: document.getElementById('message')
+  };
+  const status = document.getElementById('formStatus');
+  const counter = document.getElementById('messageCount');
+
+  // The event date cannot be earlier than today
+  const today = new Date().toISOString().split('T')[0];
+  fields.eventDate.min = today;
+
+  // Each rule returns an error message, or '' if the value is OK
+  const rules = {
+    name(v) {
+      if (!v) return 'Please enter your name.';
+      if (v.length < 2) return 'Name is too short.';
+      if (!/^[A-Za-z\u00C0-\u024F.'\- ]+$/.test(v)) return 'Name can only contain letters.';
+      return '';
+    },
+    email(v) {
+      if (!v) return 'Please enter your email address.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Enter a valid email, e.g. name@email.com.';
+      return '';
+    },
+    phone(v) {
+      if (!v) return 'Please enter your mobile number.';
+      // Removes spaces and dashes, then accepts 09XXXXXXXXX or +639XXXXXXXXX
+      const digits = v.replace(/[\s-]/g, '');
+      if (!/^(09|\+639)\d{9}$/.test(digits)) return 'Enter a valid PH number, e.g. 0930 323 9145.';
+      return '';
+    },
+    eventType(v) {
+      return v ? '' : 'Please tell us the type of event.';
+    },
+    eventDate(v) {
+      // Optional field: only check it when something is filled in
+      if (v && v < today) return 'Event date cannot be in the past.';
+      return '';
+    },
+    message(v) {
+      if (!v) return 'Please write a short message.';
+      if (v.length < 10) return 'Message is too short (at least 10 characters).';
+      return '';
+    }
+  };
+
+  // Show or clear the red error text under a field
+  function showError(input, message) {
+    let note = input.parentElement.querySelector('.field-error[data-for="' + input.id + '"]');
+    if (!note) {
+      note = document.createElement('small');
+      note.className = 'field-error';
+      note.dataset.for = input.id;
+      // min-height reserves the space so the page does not jump when an error appears
+      note.style.cssText = 'color:#f04f52;display:block;margin-top:4px;font-size:0.78rem;min-height:1.1em;';
+      input.insertAdjacentElement('afterend', note);
+    }
+    note.textContent = message;
+    input.style.borderColor = message ? '#f04f52' : '#30343b';
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+  }
+
+  // Create the (empty) error lines now, so the layout never shifts later
+  Object.keys(fields).forEach(key => showError(fields[key], ''));
+
+  // Check one field. Returns true if valid
+  function validateField(key) {
+    const input = fields[key];
+    const message = rules[key](input.value.trim());
+    showError(input, message);
+    return message === '';
+  }
+
+  // Check while typing / leaving each field
+  Object.keys(fields).forEach(key => {
+    fields[key].addEventListener('blur', () => validateField(key));
+    fields[key].addEventListener('input', () => {
+      // Only re-check live if the field already shows an error
+      if (fields[key].getAttribute('aria-invalid') === 'true') validateField(key);
+    });
+  });
+
+  // Live character counter for the message box
+  fields.message.addEventListener('input', () => {
+    counter.textContent = fields.message.value.length + ' / 500';
+  });
+
+  // When the form is submitted
+  contactForm.addEventListener('submit', event => {
+    event.preventDefault(); // stop the page from reloading
+    status.textContent = '';
+
+    // Check ALL fields (don't stop at the first error)
+    let allValid = true;
+    Object.keys(fields).forEach(key => {
+      if (!validateField(key)) allValid = false;
+    });
+
+    if (!allValid) {
+      status.style.color = '#f04f52';
+      status.textContent = 'Please fix the highlighted fields and try again.';
+      // Jump to the first field with an error
+      contactForm.querySelector('[aria-invalid="true"]').focus();
+      return;
+    }
+
+    // No server yet, so we just show a success message
+    status.style.color = '#6fcf97';
+    status.textContent = 'Thank you, ' + fields.name.value.trim().split(' ')[0] +
+      '! Your inquiry was received. We will contact you soon.';
+    contactForm.reset();
+    counter.textContent = '0 / 500';
+    contactForm.querySelectorAll('input, textarea').forEach(input => {
+      showError(input, '');
+      input.removeAttribute('aria-invalid');
+    });
+  });
+}
